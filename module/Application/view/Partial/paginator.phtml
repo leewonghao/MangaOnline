@@ -1,0 +1,23 @@
+<?php if($this->pageCount):?>
+    <div class="pagination-centered">
+        <ul class="pagination">
+            <?php if(isset($this->previous)):?>
+                 <li class="arrow unavailable"><a href="<?php echo $this->url($this->route, array('page' => $this->first), false, true)?>">&laquo;</a></li>
+                 <li class="arrow unavailable"><a href="<?php echo $this->url($this->route, array('page' => $this->previous), false, true)?>">&lt;</a></li>
+            <?php endif;?>
+            <?php foreach ($this->pagesInRange as $pages):?>
+                <?php if($pages != $this->current):?>
+                    <li><a href="<?php echo $this->url($this->route, array('page' => $pages), false, true);?>"><?php echo $this->escapehtml($pages);?></a></li>
+                <?php else :?>
+                    <li class="current"><a href="#"><?php echo  $this->escapehtml($pages);?></a></li>
+                <?php endif;?>
+            <?php endforeach;?>
+            <?php if(isset($this->next)):?>
+                    <li class="arrow unavailable"><a href="<?php echo $this->url($this->route, array('page' => $this->next), false, true);?>">&gt;</a></li>
+                    <li class="arrow unavailable"><a href="<?php echo $this->url($this->route, array('page' => $this->last), false, true)?>">&raquo;</a></li>
+            <?php endif;?>
+        </ul>
+     </div>
+<?php endif;?>
+<br/>
+<br/>

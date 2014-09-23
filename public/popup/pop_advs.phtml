@@ -1,0 +1,11 @@
+<!-- <a class="imgadvs" href="//demotry.heliohost.org"  target="_blank"><img src="img/manga_banner.png" width="500" height="400" /></a>  -->
+<a class="imgadvs" href="//demotry.heliohost.org"  target="_blank"><img src="public/img/manga_banner.png" width="500" height="400" /></a>
+<script>
+	$(".imgadvs").click(function(){
+		$.colorbox.close();
+        var date = new Date();
+        var mins = 30;
+        date.setTime(date.getTime() + (mins * 60 * 1000));
+        $.cookie("popadv", "pop", {expires: date});
+	});
+</script>

@@ -1,0 +1,69 @@
+  <?php echo $this->headlink()->setStylesheet($this->basePath() . '/public/css/main.css'); ?>
+           <section class="large-8 columns">
+               <?php echo $this->partial("Partial/qc-index.phtml", null); ?>
+               <dl class="tabs" data-tab>
+                    <dd class="active"><a href="#manga_ds">Đặc sắc</a></dd>
+               </dl>
+                <div class="tabs-content">
+                  <div class="content active shopp_ds" id="manga_ds">
+                          <ul class="clearing-thumbs">
+                     	  <?php foreach ($DSTruyenDS as $item_truyen): ?>
+                                  <li>
+                                     <figure>
+                                        <a class="th" href="<?php echo $this->url('thongtintruyen', array('action' => 'index', 'id' => $item_truyen->Matruyen, 'Tentruyen' => $item_truyen->Tentruyenkhongdau))?>"><img title="<?php echo $this->escapehtml($item_truyen->Tentruyen) ?>" src="<?php echo $item_truyen->Hinhminhhoa ?>" /></a>
+                                        <figcaption>
+                                        	<h3><a href=<?php echo $this->url('thongtintruyen', array('action' => 'index', 'id' => $item_truyen->Matruyen, 'Tentruyen' => $item_truyen->Tentruyenkhongdau))?> title="<?php echo $this->escapehtml($item_truyen->Tentruyen)?>"><?php echo $this->escapehtml($item_truyen->Tentruyen)?></a></h3>
+                                        </figcaption>
+                                    </figure>                                 
+                                  </li>
+                          <?php endforeach; ?>
+                          </ul>
+                          <div class="clear"></div>
+                   </div>
+                </div>
+               <dl class="tabs" data-tab>
+                    <dd class="active"><a href="#manga_new">Mới nhất</a></dd>
+                    <dd><a href="#manga_dc">Đề cử</a></dd>
+               </dl>
+               <div class="tabs-content">
+                   <div class="content active" id="manga_new">
+                        <?php foreach ($list_truyen as $item_truyen):?>
+                        	<div class="shopp">
+                                <figure class="row">
+                                    <div class="large-3 medium-3 small-5 columns">
+                                        <a class="th" href="<?php echo $this->url('thongtintruyen', array('action' => 'index', 'id' => $item_truyen->Matruyen, 'Tentruyen' => $item_truyen->Tentruyenkhongdau))?>"><img title="<?php echo $this->escapehtml($item_truyen->Tentruyen) ?>" src="<?php echo $item_truyen->Hinhminhhoa ?>" /></a>
+                                    </div>
+                                    <figcaption class="large-9 medium-9 small-7 columns">
+                                    	<h3><a href=<?php echo $this->url('thongtintruyen', array('action' => 'index', 'id' => $item_truyen->Matruyen, 'Tentruyen' => $item_truyen->Tentruyenkhongdau))?>><?php echo $this->escapehtml($item_truyen->Tentruyen)?></a></h3>
+                                         <p><a href="<?php echo $this->url('viewtruyen', array('action' => 'index', 'id' => $item_truyen->Machapter, 'Tenchapter' => $item_truyen->Tenchapterkhongdau))?>"><?php echo $this->escapehtml($item_truyen->Tenchapter)?></a></p>
+                                    	<p><span class="info">Ngày đăng: </span><?php echo $this->escapehtml(date_format(date_create($item_truyen->Ngaydang), 'd-m-Y'))?></p>
+                                    </figcaption>
+                                </figure>
+                            </div>
+                        <?php endforeach;?>
+                        <h4 class="viewmore"><a href="<?php echo $this->url('moinhat')?>">Xem thêm...</a></h4>
+                   </div>
+                   <div class="content" id="manga_dc">
+                        <?php foreach ($list_truyen_DC as $item_truyen):?>
+                        	<div class="shopp">
+                                <figure class="row">
+                                    <div class="large-3 medium-3 small-5 columns">
+                                        <a class="th" href="<?php echo $this->url('thongtintruyen', array('action' => 'index', 'id' => $item_truyen->Matruyen, 'Tentruyen' => $item_truyen->Tentruyenkhongdau))?>"><img title="<?php echo $this->escapehtml($item_truyen->Tentruyen) ?>" src="<?php echo $item_truyen->Hinhminhhoa ?>" /></a>
+                                    </div>
+                                    <figcaption class="large-9 medium-9 small-7 columns">
+                                    	<h3><a href=<?php echo $this->url('thongtintruyen', array('action' => 'index', 'id' => $item_truyen->Matruyen, 'Tentruyen' => $item_truyen->Tentruyenkhongdau))?>><?php echo $this->escapehtml($item_truyen->Tentruyen)?></a></h3>
+                                        <p><a href="<?php echo $this->url('viewtruyen', array('action' => 'index', 'id' => $item_truyen->Machapter, 'Tenchapter' => $item_truyen->Tenchapterkhongdau))?>"><?php echo $this->escapehtml($item_truyen->Tenchapter)?></a></p>
+                                    	<p><span class="info">Ngày đăng: </span><?php echo $this->escapehtml(date_format(date_create($item_truyen->Ngaydang), 'd-m-Y'))?></p>
+                                    </figcaption>
+                                </figure>
+                            </div>
+                        <?php endforeach;?>
+                        <h4 class="viewmore"><a href="<?php echo $this->url('decu'); ?>">Xem thêm...</a></h4> 
+                    </div>
+               </div>
+             </section>
+             <aside class="large-4 columns"> 
+                <?php echo $this->render("Partial/fanpage.phtml"); ?>
+                <?php echo $this->partial('Partial/DSTL_Partial.phtml'); ?>
+                <?php echo $this->partial('Partial/advsright.phtml'); ?>
+            </aside>

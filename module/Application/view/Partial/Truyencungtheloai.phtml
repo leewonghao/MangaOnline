@@ -1,0 +1,13 @@
+                <div class="shopp_ass">
+                	<div style="text-align:center">
+                    	<h2>Cùng thể loại</h2>
+                    </div>
+                    <?php foreach ($listtruyenTL as $list_tl): ?>
+                        <div style="margin-left:10px;">
+                        <img src="<?php echo $this->basepath("public/img/icon_attch.png"); ?>" width="10px" height="10px" style="margin-top: 10px;" />
+                        <a class="namemg" href="<?php echo $this->url('thongtintruyen', array('action' => 'index', 'id' => $list_tl->Matruyen, 'Tentruyen' => $list_tl->Tentruyenkhongdau)); ?>"><?php echo $this->escapehtml($list_tl->Tentruyen); ?></a>
+                        &nbsp;&nbsp;-&nbsp;&nbsp;<a href="<?php echo $this->url('viewtruyen', array('action' => 'index', 'id' => $list_tl->Machapter, 'Tenchapter' => $list_tl->Tenchapterkhongdau)); ?>"><?php echo $this->escapehtml($list_tl->Tenchapter); ?></a>
+                        </div>
+                    <?php endforeach; ?>
+                    <div class="clear"></div>
+                </div>

@@ -1,0 +1,107 @@
+<?php 
+if (defined('RUNNING_FROM_ROOT')) {
+  $this->plugin('basePath')->setBasePath($this->basePath().'/public');
+} ?>
+<?php echo $this->doctype(); ?>
+
+<html lang="vi" xml:lang="vi" xmlns:fb="http://ogp.me/ns/fb#">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <?php echo $this->headTitle()?>
+        <!-- Le styles -->
+        <?php echo $this->headLink(array('rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/img/favicon_m.ico'))
+                        ->appendStylesheet($this->basePath() . '/css/min/reset.css')
+                        ->appendStylesheet($this->basePath() . '/css/min/foundation.css')
+                        ->appendStylesheet($this->basepath() . '/css/style_layout.css')
+                        ->appendStylesheet($this->basePath() . '/css/juicyslider.css')
+                        ->appendStylesheet($this->basePath() . '/css/colorbox.css') ?>
+
+        <!-- Scripts -->
+        <?php echo $this->headScript()->prependFile($this->basePath() . '/js/cufon-yui.js')
+                                      ->prependFile($this->basePath() . '/js/jquery.colorbox.js')
+                                      ->prependFile($this->basePath() . '/js/jquery.cookie.js')
+                                      ->prependFile($this->basePath() . '/js/jquery.js')
+                                      ->prependFile($this->basePath() . '/js/modernizr.js') ?>
+    </head>
+    <body>
+        <div id="main">
+          <header class="row">
+            <div class="large-12 columns">
+               <nav class="top-bar" data-topbar>
+                  <ul class="title-area">
+                    <li class="name">
+                      <h1><a href="<?php echo $this->url('home')?>">Trang chủ</a></h1>
+                    </li>
+                    <li class="toggle-topbar menu-icon"><a href="#">Menu</a></li>
+                  </ul>  
+                  <section class="top-bar-section">
+                    <ul class="left">
+                      <li><a href="<?php echo $this->url('danhsach');?>">Danh sách</a></li>
+                      <li><a href="<?php echo $this->url('xemnhieu'); ?>">Xem nhiều</a></li>
+                    </ul>
+                  </section>
+                </nav>
+                <div class="row">
+                    <div class="show-for-large-up">
+                        <div class="slimg">
+                               <a href="http://zing.vn" target="_blank"><img src="<?php echo $this->basePath() . "/images/3.png" ?>"></a>
+                         </div>                        
+                    </div>
+                    <div class="right large-6 columns">
+                        <h1 class="title">Angle Manga</h1>
+                        <form id="searchForm" action="<?php echo $this->url('timkiem', array('action' => 'index')); ?>" method="post">
+                              <div class="row">
+                                <div class="large-12 columns">
+                                  <div class="row collapse">
+                                    <div class="small-10 columns">
+                                      <input type="text" name="search" placeholder="Nhập truyện cần tìm kiếm">
+                                    </div>
+                                    <div class="small-2 columns">
+                                      <input type="submit" class="button postfix" value="Tìm" />
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="hide-for-large-up">
+                                    <a class="img_small" href="http://zing.vn" target="_blank"><img src="<?php echo $this->basePath() . "/images/small.png" ?>"></a>
+                                </div>
+                             </div>
+                         </form>           
+                    </div>
+                </div>
+             </div>
+          </header>
+          <article id="content" class="row">
+            <?php echo $this->content; ?>
+          </article>
+          <div class="af clear"></div>
+        </div>
+        <footer>
+            <div class="footerlink" class="row">
+                <div class="large-6 columns" style="margin-bottom: 5px;">
+                    <p>Coppy right &copy; 2014 <a href="#">Angel Manga</a> - All Rights Reserved</p>
+                    <p>Liên hệ đặt quảng cáo: vnanglemanga@gmail.com</p>
+                </div>
+                <div class="large-6 columns">
+                    <span style="font-weight: bold"><a href="<?php echo $this->url('home'); ?>">Angle manga</a></span> cổng thông tin truyện tranh giải trí Việt Nam</p>
+                    <p class="hide-for-small-only">Website truyện tranh phi lợi nhuận, phi tôn giáo, phi chính trị</p>
+                </div>
+            </div>
+        </footer>
+    <?php if($this->layout()->getChildren()[0]->getTemplate() != 'application/viewtruyen/index'): ?>
+        <?php echo $this->headLink()->setStylesheet($this->basepath('css/banadv.css')); ?>
+        <div id="banner_l" class="banner banl"><a target="_blank" href="//nhipsongcongnghe.vn"></a></div>
+        <div id="banner_r" class="banner banr"><a target="_blank" href="//khudothimoi.com"></a></div>
+    <?php endif; ?>
+        <script type="text/javascript">
+            Cufon.now();
+        </script>
+        <?php echo $this->headscript()->setFile($this->basePath() . '/js/foundation.min.js'); ?>
+        <script>
+             $(document).foundation();
+        </script>
+        <?php echo $this->inlineScript() ?>
+    </body>
+</html>

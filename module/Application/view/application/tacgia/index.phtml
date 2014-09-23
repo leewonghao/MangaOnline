@@ -1,0 +1,32 @@
+    	<h2 class="pl">Tác giả: <?php echo $this->escapehtml($Tentg->Tentacgia); ?></h2>
+        	<section class="large-8 columns">
+        	<?php if(count($DS_truyen) > 0): ?>
+              <table>
+                <thead>
+                    <tr>
+                      <th>Tên truyện</th>
+                      <th>Nhóm dịch</th>
+                      <th>Ngày đăng</th>
+                      <th>Tình trạng</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($DS_truyen as $lists): ?>
+                             <tr>
+                              <td><a class="name_mg" href="<?php echo $this->url('thongtintruyen', array('action' => 'index', 'id' => $lists->Matruyen, 'Tentruyen' => $lists->Tentruyenkhongdau)); ?>"><?php echo $this->escapehtml($lists->Tentruyen); ?></a></td>
+                              <td><?php echo $this->escapehtml($lists->Nhomdich); ?></td>
+                              <td><?php echo $this->escapehtml(date_format(date_create($lists->Ngaydang), 'd-m-Y')); ?></td>
+                              <td><?php echo $this->escapehtml($lists->Tinhtrang); ?></td>
+                            </tr>
+                <?php endforeach; ?>
+                </tbody>              
+              </table>
+                <?php echo $this->paginationcontrol($DS_truyen, 'sliding', 'Partial/paginator.phtml', array('route' => 'tacgia/paginator'));?>                                                                               
+            <?php else: ?>
+                <div class="shopp_ass"><p><h4>Không tìm thấy kết quả</h4></p></div>
+                <?php endif; ?>
+            </section>
+ <aside class="large-4 columns">
+        <?php echo $this->partial('Partial/DSTL_Partial.phtml'); ?>
+        <?php echo $this->partial('Partial/advsright.phtml', null); ?>
+</aside>

@@ -1,0 +1,188 @@
+<?php $this->headscript()->setFile($this->basePath() . '/public/js/lazyload.min.js'); ?>
+<?php echo $this->partial('Partial/qc-viewtruyen.phtml', array(null)); ?>
+    <h2 class="view large-12 columns"><?php echo $this->escapehtml($TT_Chapter->Tentruyen); ?></h2>
+    <h3 class="view large-12 columns"><?php echo $this->escapehtml($TT_Chapter->Tenchapter); ?></h3>
+    <div class="large-12 columns">
+        <div class="row" id="list_view">
+            <div class='small-2 columns' style='text-align: right;'>
+                <img id='img_prev_above' src="<?php echo $this->basePath() . '/public/images/arrow left.png'; ?>" />
+            </div>
+            <div class="small-8 columns">
+                <label>
+                    <select class='select-chapter'>
+                        <option default selected>---- Danh sách chapter ----</option>
+                        <?php foreach($DS_Chapter as $Chap): ?>
+                            <option value="<?php echo $this->url('viewtruyen', array('action' => 'index', 'id' => $Chap->Machapter, 'Tenchapter' => $Chap->Tenchapterkhongdau)) ?>">
+                                <?php echo $this->escapehtml($Chap->Tenchapter); ?>
+                            </option>        
+                        <?php endforeach; ?>
+                    </select>
+                </label>                
+            </div>
+            <div class='small-2 columns'>
+                <img id='img_next_above' src='<?php echo $this->basePath() . '/public/images/arrow right.png'; ?>' />
+            </div>
+        </div>
+        <div class="row">
+            <section class="small-12 columns">
+            	<div class="view_list">
+            	   <?php foreach ($View_Chapter as $imgs): ?>
+            	       <figure>
+            	           <img class="lazy-load" alt="" data-src-mobile="<?php echo $imgs->Hinhanh ?>?imgmax=3000" data-src="<?php echo $imgs->Hinhanh ?>?imgmax=3000" src="../../img/blank.gif" />
+            	            <noscript><img src="<?php echo $imgs->Hinhanh ?>?imgmax=3000" /></noscript>
+            	       </figure>
+            	   <?php endforeach; ?>
+            	</div>                  
+            </section>
+            <div class="show-for-medium-up">
+                <a href="#" class="back-to-top">Top</a>
+            </div>
+        </div>
+        <div class="row" id="list_view_par">
+            <div class='small-2 columns' style='text-align: right;'>
+                <img id='img_prev_below' src='<?php echo $this->basePath() . '/public/images/arrow left.png'; ?>' />
+            </div>
+            <div class="small-8 columns">
+                <label>
+                    <select class='select-chapter'>
+                        <option default selected>---- Danh sách chapter ----</option>
+                        <?php foreach($DS_Chap_duoi as $Chap): ?>
+                            <option value="<?php echo $this->url('viewtruyen', array('action' => 'index', 'id' => $Chap->Machapter, 'Tenchapter' => $Chap->Tenchapterkhongdau)) ?>">
+                                <?php echo $this->escapehtml($Chap->Tenchapter); ?>
+                            </option>        
+                        <?php endforeach; ?>
+                    </select>
+                </label>                
+            </div>
+            <div class='small-2 columns'>
+                <img id='img_next_below' src='<?php echo $this->basePath() . '/public/images/arrow right.png'; ?>' />
+            </div>
+        </div>
+        <div class="row" style="margin: 40px 0 70px 0;">
+            <div class="small-12 colums">
+                <div class="row">
+                    <div class="small-6 small-centered columns">
+                        <fb:like href="<?php echo $this->serverurl($this->url('viewtruyen', array('action' => 'index', 'id' => $TT_Chapter->Machapter, 'Tenchapter' => $TT_Chapter->Tenchapterkhongdau))); ?>" width="auto" style="float:left; margin-right: 10px;" layout="button_count" action="like" show_faces="true" share="true"></fb:like>                                                                            
+                        <!-- Place this tag where you want the share button to render. -->
+                        <div class="g-plus" data-action="share" data-annotation="bubble" data-href="<?php echo $this->serverurl($this->url('viewtruyen', array('action' => 'index', 'id' => $TT_Chapter->Machapter, 'Tenchapter' => $TT_Chapter->Tenchapterkhongdau))); ?>"></div>
+                        <!-- Place this tag after the last share tag. -->
+                        <script type="text/javascript">
+                          (function() {
+                            var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+                            po.src = 'https://apis.google.com/js/platform.js';
+                            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+                          })();
+                        </script>
+                        <a href="https://twitter.com/share" class="twitter-share-button" data-url="<?php echo $this->serverurl($this->url('viewtruyen', array('action' => 'index', 'id' => $TT_Chapter->Machapter, 'Tenchapter' => $TT_Chapter->Tenchapterkhongdau))); ?>">Tweet</a>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 10px;">
+                      <script>
+                        $(window).load(function(e){
+                          (function(window){
+                              var dh = null;
+                              $(window).on("resize",function(){
+                                  if ( dh ) {
+                                      clearTimeout(dh);
+                                  }
+                                  dh = setTimeout(function(){
+                                      var $fbc = $(".fb-comments");
+                                      var $stc = $(".comments-container");
+                                      dh = null;
+                                      if ( $fbc.attr("data-width") != $stc.width() ) {
+                                          $stc.css({height:$stc.height()});
+                                          $fbc.attr("data-width", $stc.width());
+                                          FB.XFBML.parse($stc[0],function(){
+                                              $stc.css({height:'auto'});
+                                          });
+                                      }
+                                  }, 300);
+                              }).trigger("resize");
+                          })(this);
+                        });
+                      </script>
+                    <div class="small-12 columns">
+                      <div class="comments-container">
+                        <fb:comments class="fb-comments" href="<?php echo $this->serverurl($this->url('viewtruyen', array('action' => 'index', 'id' => $TT_Chapter->Machapter, 'Tenchapter' => $TT_Chapter->Tenchapterkhongdau))); ?>" numposts="10" colorscheme="dark"></fb:comments>
+                      </div>
+                        <div id="fb-root"></div>
+                        <script>(function(d, s, id) {
+                          var js, fjs = d.getElementsByTagName(s)[0];
+                          if (d.getElementById(id)) return;
+                          js = d.createElement(s); js.id = id;
+                          js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=564010057045875";
+                          fjs.parentNode.insertBefore(js, fjs);
+                        }(document, 'script', 'facebook-jssdk'));</script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<script>
+$(document).ready(function(e) {
+    <?php foreach ($DSNext_Prev as $img_NextPrev): ?>
+    <?php if ($img_NextPrev->rank == '1'): ?>
+    	$("#img_prev_above").css({"cursor":"pointer", "opacity":"1"}).bind('click', function() {
+			var mess = confirm("Bạn muốn chuyển chapter khác ?");
+			if(mess == true){
+				window.location = "<?php echo $this->url('viewtruyen', array('action' => 'index', 'id' => $img_NextPrev->Machapter, 'Tenchapter' => $img_NextPrev->Tenchapkhongdau)); ?>";
+			}
+    	});
+    	$('#img_prev_below').css({"cursor":"pointer", "opacity":"1"}).bind('click', function() {
+			var mess = confirm("Bạn muốn chuyển chapter khác ?");
+			if(mess == true){
+				window.location = "<?php echo $this->url('viewtruyen', array('action' => 'index', 'id' => $img_NextPrev->Machapter, 'Tenchapter' => $img_NextPrev->Tenchapkhongdau)); ?>";
+			}
+    	});
+    <?php endif; ?>
+    <?php if ($img_NextPrev->rank == '2'): ?>
+    $('#img_next_above').css({"cursor":"pointer", "opacity":"1"}).bind('click', function() {
+		var mess = confirm("Bạn muốn chuyển chapter khác ?");
+		if(mess == true){
+			window.location = "<?php echo $this->url('viewtruyen', array('action' => 'index', 'id' => $img_NextPrev->Machapter, 'Tenchapter' => $img_NextPrev->Tenchapkhongdau)); ?>";
+		} 
+	});
+    $('#img_next_below').css({"cursor":"pointer", "opacity":"1"}).bind('click', function() {
+		var mess = confirm("Bạn muốn chuyển chapter khác ?");
+		if(mess == true){
+			window.location = "<?php echo $this->url('viewtruyen', array('action' => 'index', 'id' => $img_NextPrev->Machapter, 'Tenchapter' => $img_NextPrev->Tenchapkhongdau)); ?>";
+		} 
+	});
+    <?php endif; ?>
+    <?php endforeach; ?>
+    $('select.select-chapter').change(function(e) {
+		var mess = confirm("Bạn muốn chuyển chapter khác ?");
+		if(mess == true){
+    		window.location = this.value;	
+		}
+		else{
+			$('select.select-chapter option')[0].selected = true;
+		}
+    });
+    $('select.select-chapter_down').change(function(e) {
+		var mess = confirm("Bạn muốn chuyển chapter khác ?");
+		if(mess == true){
+    		window.location = this.value;	
+		}
+		else{
+			$('select.select-chapter_down option')[0].selected = true;
+		}
+    });
+		var offset = 220;
+		var duration = 500;
+		jQuery(window).scroll(function() {
+			if (jQuery(this).scrollTop() > offset) {
+				jQuery('.back-to-top').fadeIn(duration);
+			} else {
+				jQuery('.back-to-top').fadeOut(duration);
+			}
+		});
+		
+		jQuery('.back-to-top').click(function(event) {
+			event.preventDefault();
+			jQuery('body').animate({scrollTop: 0}, duration);
+			return false;
+		});
+});
+</script>
